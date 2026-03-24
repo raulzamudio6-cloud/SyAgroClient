@@ -1,6 +1,7 @@
 import { Button, Card, CardContent, CircularProgress, Grid, TextField, Typography } from "@mui/material";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export default function CompanyForm() {
     const [company, setCompany] = useState({
@@ -22,7 +23,7 @@ export default function CompanyForm() {
         setLoading(true);
 
         if (editCompany) {
-            const res = await fetch(`http://localhost:4000/companies/${params.id}`, {
+            const res = await fetch(`${API_URL}/companies/${params.id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'
@@ -34,7 +35,7 @@ export default function CompanyForm() {
             const data = await res.json();
             console.log(data)
         } else {
-            await fetch('http://localhost:4000/companies', {
+            await fetch(`${API_URL}/companies`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -52,7 +53,7 @@ export default function CompanyForm() {
 
     const loadCompany = async (id) => {
         try {
-            const res = await fetch(`http://localhost:4000/companies/${id}`);
+            const res = await fetch(`${API_URL}/companies/${id}`);
             const data = await res.json();
             setCompany({ name: data.name, legal_name: data.legal_name, phone: data.phone, city: data.city, rfc: data.rfc, email: data.email, suscription_plan: data.suscription_plan });
             setEditCompany(true);

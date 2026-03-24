@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Card, CardContent, Typography } from "@mui/material";
 import {useNavigate} from 'react-router-dom'
+const API_URL = process.env.REACT_APP_API_URL;
 
 
 export default function CompanyList() {
@@ -8,7 +9,7 @@ export default function CompanyList() {
     const navigate = useNavigate();
     const LoadCompanies = async () => {
         try {
-            const response = await fetch('http://localhost:4000/companies');
+            const response = await fetch(`${API_URL}/companies`);
             const data = await response.json();
             setCompanies(data);
         } catch (error) {
@@ -19,7 +20,7 @@ export default function CompanyList() {
     const handleDelete = async (id) => {
         try {
 
-            const res = await fetch(`http://localhost:4000/companies/${id}`, {
+            const res = await fetch(`${API_URL}/companies/${id}`, {
                 method: 'DELETE'
             });
             console.log(res);
