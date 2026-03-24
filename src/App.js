@@ -1,25 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import CompanyList from './components/CompanyList';
+import CompanyForm from './components/CompanyForm';
+import Menu from './components/Navbar';
+import { Container } from '@mui/material';
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Menu />
+      <Container>
+        <Routes>
+          <Route path="/" element={<CompanyList />} />
+          <Route path="/companies/new" element={<CompanyForm />} />
+          <Route path="/companies/:id/edit" element={<CompanyForm />} />
+        </Routes>
+      </Container>
+    </BrowserRouter>
   );
 }
 
-export default App;
