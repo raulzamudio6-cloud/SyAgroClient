@@ -34,7 +34,7 @@ export default function CompanyForm() {
             const data = await res.json();
             console.log(data)
         } else {
-            const res = await fetch('http://localhost:4000/companies', {
+            await fetch('http://localhost:4000/companies', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
