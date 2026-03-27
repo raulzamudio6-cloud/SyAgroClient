@@ -1,21 +1,13 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CompanyList from './components/CompanyList';
-import CompanyForm from './components/CompanyForm';
-import Menu from './components/Navbar';
-import { Container } from '@mui/material';
+import React from 'react';
+import { AuthProvider } from './context/AuthContext';
+import AppRouter from './routes/AppRouter';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Menu />
-      <Container>
-        <Routes>
-          <Route path="/" element={<CompanyList />} />
-          <Route path="/companies/new" element={<CompanyForm />} />
-          <Route path="/companies/:id/edit" element={<CompanyForm />} />
-        </Routes>
-      </Container>
-    </BrowserRouter>
+    <AuthProvider>
+      <AppRouter />
+    </AuthProvider>
   );
 }
+
 
